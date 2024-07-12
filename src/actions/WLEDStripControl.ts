@@ -10,7 +10,7 @@ const name: string = 'WLED Strip Control';
 
 // The custom code inputs
 const inputs: ICCActionInputs = {
-  deviceIp: new StringInput('IP of WLED Device', { required: false }),
+  deviceIp: new StringInput('IP of WLED Device', { required: true }),
   devicePower: new BooleanInput('Turn On/Off', { required: false }),
   deviceBrightness: new IntInput('Set Brightness (0-255)', { required: false, minValue: 0, maxValue: 255 }),
   rInput: new IntInput('Red Value (0-255)', { required: false, minValue: 0, maxValue: 255 }),
@@ -21,12 +21,12 @@ const inputs: ICCActionInputs = {
 
 // Send request to WLED API
 async function controlLED(wledIp: string, data: object) {
-  const WLED_API_URL = 'http://${deviceIp}/json/state';
+  const WLED_API_URL = 'http://${wledIp}/json/state';
   
   try {
 
     const response = await axios.post(WLED_API_URL, data);
-    console.log('WLED is controlled');
+    console.log('WLED is controlled', response.data);
 
   } catch (error){
 
@@ -39,12 +39,21 @@ async function controlLED(wledIp: string, data: object) {
 async function method(inputs: { [key: string]: number | string | boolean | string[] }) {
 
 // Call all inputs
-  const wledIp = inputs['deviceIP'] as string;
+  const wledIp = inputs['deviceIp'] as string;
 
   if (!wledIp) {
     console.error('You need an IP to continue!');
     return;
   }
+
+// Verify IP format
+const ipPattern = /^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/;
+if (!ipPattern.test(wledIp)) {
+
+  console.error('Invalid IP address format.');
+  return;
+
+}
 
   const power = inputs['devicePower'] as boolean;
   const brightness = inputs['deviceBrightness'] as number || 255;
@@ -53,7 +62,7 @@ async function method(inputs: { [key: string]: number | string | boolean | strin
   const blue = inputs['bInput'] as number;
 
 // Control WLED Strip
-  const wledStrip = {
+  const ledData = {
     on: power,
     bri: brightness,
     seg: [{
@@ -61,7 +70,7 @@ async function method(inputs: { [key: string]: number | string | boolean | strin
     }]
   }
 
-  await controlLED(wledIp, wledStrip);
+  await controlLED(wledIp, ledData);
   
 // Get Aitum Library and Device
   const lib = AitumCC.get().getAitumJS();
