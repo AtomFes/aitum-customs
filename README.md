@@ -3,7 +3,10 @@
 ## What is Aitum Customs?
 Inside this repository will be actions that can be used within Aitum's custom code. Download any of the actions here and add them to your `src/actions` folder.
 
-In order to use these actions, please setup aitum-cc. Intructions for installing aitum-cc can be found [here](https://github.com/Aitum/aitum-cc).
+## Support
+Join the [Aitum Discord](https://aitum.tv/discord) and head over to `#cc-releases` and find the post labeled with the acton in question and @ AtomFes for assistance.
+
+#### *Note: You need to have already installed Aitum's custom code which can be found [here](https://github.com/Aitum/aitum-cc).*
 
 ## Actions
 ### WLEDStripControl.ts
