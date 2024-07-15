@@ -20,5 +20,5 @@ Available Inputs:
     - Use a preset that you made.
 - Power WLED Device On/Off
     - Allows the WLED to be turned on and off.
-- Set Brighness (0-255)
+- Set Brightness (0-255)
     - Set the brightness of the WLED.
