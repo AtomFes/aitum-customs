@@ -14,15 +14,11 @@ After specifying your devices IP, the action will allow you to control the light
 
 Available Inputs:
 
-- IP of WLED Device
+- WLED Device IP Address
     - Example: 192.168.1.1
-- Turn On/Off
+- Preset ID
+    - Use a preset that you made.
+- Power WLED Device On/Off
     - Allows the WLED to be turned on and off.
 - Set Brighness (0-255)
     - Set the brightness of the WLED.
-- Red Value (0-255)
-    - Raise or lower the amount of red within the WLED light.
-- Green Value (0-255)
-    - Raise or lower the amount of green within the WLED light.
-- Blue Value (0-255)
-    - Raise or lower the amount of blue within the WLED light.
