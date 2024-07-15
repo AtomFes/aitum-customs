@@ -10,7 +10,7 @@ Join the [Aitum Discord](https://aitum.tv/discord) and head over to `#cc-release
 
 ## Actions
 ### WLEDStripControl.ts
-After specifying your WLED device IP address, this action will allow you to control the light strip's preset, power and brightness.
+After specifying your WLED device IP address, this action will allow you to control the light strip's preset, power, and brightness.
 
 Available Inputs:
 
