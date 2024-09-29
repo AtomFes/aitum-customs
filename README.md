@@ -32,6 +32,7 @@ After specifying your WLED device IP address, this action will allow you to cont
 <details>
 <summary>StreamChatLog.ts</summary>
 Log your Twitch or YouTube stream chat to a channel in your Discord. In order for this to work, you must have one of the following triggers:
+
 - Device > Twitch
 - Trigger Type > Chat Message
 
