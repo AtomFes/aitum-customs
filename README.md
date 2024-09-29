@@ -10,15 +10,55 @@ Join the [Aitum Discord](https://aitum.tv/discord) and head over to `#cc-release
 
 ## Actions
 ### WLEDStripControl.ts
-After specifying your devices IP, the action will allow you to control the light strip's power, brightness, and color.
+After specifying your LED device's IP, this action will allow you to control the light strip's power, brightness, and color.
 
-Available Inputs:
+#### Available Inputs:
 
+##### Required
 - WLED Device IP Address
     - Example: 192.168.1.1
+
+##### Optional
 - Preset ID
     - Use a preset that you made.
 - Power WLED Device On/Off
     - Allows the WLED to be turned on and off.
 - Set Brighness (0-255)
     - Set the brightness of the WLED.
+### StreamChatLog.ts
+Log your Twitch or YouTube stream chat to a channel in your Discord. In order for this to work, you must have one of the following triggers:
+- Device > Twitch
+- Trigger Type > Chat Message
+
+OR
+
+- Device > YouTube
+- Trigger type > Chat Message Added
+
+#### Available Inputs:
+
+##### Required
+- Discord Webhook URL
+    - Create a webhook in your Discord server with this guide [here](https://support.discord.com/hc/en-us/articles/228383668-Intro-to-Webhooks).
+
+##### Optional
+
+##### Twitch
+- Activate Twitch Logging
+    - Turn on Discord logging for your Twitch stream.
+- Twitch Username
+    - Variables > Twitch: Username
+- Twitch Chat Message
+    - Variables > Twitch: Message
+
+##### YouTube
+- Activate YouTube Logging
+    - Turn on Discord logging for your YouTube stream.
+- YouTube Username
+    - Variables > YouTube: Username
+- YouTube Chat Message
+    - Variables > YouTube: Chat Message
+- YouTube User ID
+    - Variables > YouTube Channel ID
+- YouTube User Profile ID
+    - YouTube: User Channel URL
