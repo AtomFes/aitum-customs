@@ -69,3 +69,24 @@ OR
 - YouTube User Profile ID
     - YouTube: User Channel URL
 </details>
+
+<details>
+<summary>StreamReminderLog.ts</summary>
+Need to remind yourself to do something after a stream? Use this with the Twitch > Chat Message trigger to send you a reminder in Discord using a Webhook URL and a direct link to the time in stream of your reminder.
+
+##### *Note: This action is for Twitch only.*
+
+#### Available Inputs:
+
+##### Required
+- Discord Webhook URL
+    - Create a webhook in your Discord server with this guide [here](https://support.discord.com/hc/en-us/articles/228383668-Intro-to-Webhooks).
+- Your Twitch Username
+    - This is needed for your latest VOD so you can be taken to the exact moment you set the reminder.
+- User Creating Reminder
+    - This helps remind you who sent the reminder incase you allow moderators to use this action.
+
+##### Optional
+- Reminder Message
+    - This can be left blank unless you want a set message everytime you use this action.
+</details>

@@ -99,7 +99,6 @@ async function postToDiscord(webhookUrl: string, content: string, username: stri
   try {
     await axios.post(webhookUrl, {
       content: content,
-      username: username,
       avatar_url: avatarUrl
     });
     console.log('Message posted to Discord');
