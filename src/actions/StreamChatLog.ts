@@ -9,6 +9,7 @@ const name: string = 'Stream Chat Log';
 // The custom code inputs (Boolean for Twitch and YouTube, separate fields for each platform)
 const inputs: ICCActionInputs = {
   webhookUrl: new StringInput('Discord Webhook URL', { required: true }),
+  discordDisplayName: new StringInput('Discord Display Name', { required: true }),
 
   // Twitch fields
   isTwitch: new BooleanInput('Activate Twitch Logging', { required: false }),
@@ -26,6 +27,7 @@ const inputs: ICCActionInputs = {
 // The code executed
 async function method(inputs: { [key: string]: string | boolean }) {
   const webhookUrl = inputs['webhookUrl'] as string;
+  const discordDisplayName = inputs['discordDisplayName'] as string;
   const isTwitch = inputs['isTwitch'] as boolean;
   const isYouTube = inputs['isYouTube'] as boolean;
   
@@ -40,7 +42,7 @@ async function method(inputs: { [key: string]: string | boolean }) {
     if (!twitchMessage || !twitchUser) {
       errorMessage += 'Error: Twitch message and user name are required.\n';
     } else {
-      await postTwitchChatMessage(webhookUrl, twitchMessage, twitchUser);
+      await postTwitchChatMessage(webhookUrl, twitchMessage, twitchUser, discordDisplayName);
       messagesToSend++;
     }
   }
@@ -55,7 +57,7 @@ async function method(inputs: { [key: string]: string | boolean }) {
     if (!youtubeMessage || !youtubeUser || !youtubeUserId || !youtubeUserProfileUrl) {
       errorMessage += 'Error: YouTube message, user name, user ID, and profile URL are required.\n';
     } else {
-      await postYouTubeMessage(webhookUrl, youtubeMessage, youtubeUser, youtubeUserId, youtubeUserProfileUrl);
+      await postYouTubeMessage(webhookUrl, youtubeMessage, youtubeUser, youtubeUserId, youtubeUserProfileUrl, discordDisplayName);
       messagesToSend++;
     }
   }
@@ -72,7 +74,7 @@ async function method(inputs: { [key: string]: string | boolean }) {
 }
 
 // Log Twitch chat message
-async function postTwitchChatMessage(webhookUrl: string, message: string, user: string) {
+async function postTwitchChatMessage(webhookUrl: string, message: string, user: string, discordDisplayName: string) {
   const content = `\`\`\`
 ${whenTheThingHappened()}: ${user}
 ${message}
@@ -80,18 +82,18 @@ ${message}
 
   const avatarURL = 'https://i.imgur.com/xGoEvn9.png'; // Placeholder for Twitch avatar URL
 
-  await postToDiscord(webhookUrl, content, user, avatarURL);
+  await postToDiscord(webhookUrl, content, discordDisplayName, avatarURL);
 }
 
 // Log YouTube message
-async function postYouTubeMessage(webhookUrl: string, message: string, user: string, userId: string, userProfileUrl: string) {
+async function postYouTubeMessage(webhookUrl: string, message: string, user: string, userId: string, userProfileUrl: string, discordDisplayName: string) {
   const content = `\`\`\`
 ${whenTheThingHappened()}: ${user}
 https://www.youtube.com/channel/${userId}
 ${message}
 \`\`\``;
 
-  await postToDiscord(webhookUrl, content, user, userProfileUrl);
+  await postToDiscord(webhookUrl, content, discordDisplayName, userProfileUrl);
 }
 
 // Function to post to Discord webhook
@@ -99,6 +101,7 @@ async function postToDiscord(webhookUrl: string, content: string, username: stri
   try {
     await axios.post(webhookUrl, {
       content: content,
+      username: username,
       avatar_url: avatarUrl
     });
     console.log('Message posted to Discord');

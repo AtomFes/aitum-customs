@@ -71,6 +71,53 @@ OR
 </details>
 
 <details>
+    <summary>StreamEventLog.ts</summary>
+Log your Twitch or YouTube stream events to a channel in your Discord. In order for this to work, you must have at least one even from Twitch or YouTube.
+
+##### *Note: This action is for Twitch only. YouTube coming soon.*
+
+
+#### Available Inputs:
+
+##### Required
+- Discord Webhook URL
+    - Create a webhook in your Discord server with this guide [here](https://support.discord.com/hc/en-us/articles/228383668-Intro-to-Webhooks).
+- Discord Display Name
+    - This sets the display name for the "bot" in the channel you specify.
+- Your Twitch Username
+    - This is needed for your latest VOD so you can be taken to the exact moment you set received the event.
+- Event Source (choose one: TwitchFollow, TwitchSub)
+    - Pick one event source from the list below to log that specific event. Please note that it's a basic event log and does not show details of the chosen event.
+    <details>
+    <summary>Event Source List</summary>
+    <ul>
+    <li><strong>TwitchChannelPointRedemption</strong>: User redeems a channel point redemption.</li>
+    <li><strong>TwitchFollow</strong>: User follows.</li>
+    <li><strong>TwitchSub</strong>: User subs.</li>
+    <li><strong>TwitchGiftSub</strong>: User gifts a sub(s).</li>
+    <li><strong>TwitchCheer</strong>: User cheers bit(s).</li>
+    <li><strong>TwitchHypeTrainStarted</strong>: Hype train started.</li>
+    <li><strong>TwitchHypeTrainProgress</strong>: Hype train progress.</li>
+    <li><strong>TwitchHypeTrainEnded</strong>: Hype train ended.</li>
+    <li><strong>TwitchHypeTrainLevelUp</strong>: Hype train leveled up.</li>
+    <li><strong>TwitchPollStarted</strong>: Poll started.</li>
+    <li><strong>TwitchPollEnded</strong>: Poll ended.</li>
+    <li><strong>TwitchPredictionStarted</strong>: Prediction started.</li>
+    <li><strong>TwitchPredictionEnded</strong>: Prediction ended.</li>
+    <li><strong>TwitchIncomingRaid</strong>: Raid incoming.</li>
+    <li><strong>TwitchAdStarted</strong>: Ad starting.</li>
+    <li><strong>TwitchAdEnded</strong>: Ad ending.</li>
+    <li><strong>TwitchCategoryChanged</strong>: Category updated.</li>
+    <li><strong>TwitchShieldModeChanged</strong>: Shield mode changed.</li>
+    <li><strong>TwitchShoutoutSent</strong>: Shoutout sent to someone.</li>
+    <li><strong>TwitchShoutoutReceived</strong>: Shoutout received from someone.</li>
+  </ul>
+- User e.g., {TWITCH:username}
+    - This will show who triggered the event.
+    </details>
+</details>
+
+<details>
 <summary>StreamReminderLog.ts</summary>
 Need to remind yourself to do something after a stream? Use this with the Twitch > Chat Message trigger to send you a reminder in Discord using a Webhook URL and a direct link to the time in stream of your reminder.
 

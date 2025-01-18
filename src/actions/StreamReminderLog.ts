@@ -9,6 +9,7 @@ const name: string = 'Stream Reminder Log';
 // The custom code inputs
 const inputs: ICCActionInputs = {
   webhookUrl: new StringInput('Discord Webhook URL', { required: true }),
+  discordDisplayName: new StringInput('Discord Display Name', { required: true }),
   broadcastUser: new StringInput('Your Twitch Username', { required: true }),
   user: new StringInput('User Creating Reminder', { required: true }),
   rawInput: new StringInput('Reminder Message', { required: false }),
@@ -17,6 +18,7 @@ const inputs: ICCActionInputs = {
 // The code executed
 async function method(inputs: { [key: string]: number | string | boolean | string[] }) {
   const webhookUrl = inputs['webhookUrl'] as string;
+  const discordDisplayName = inputs['discordDisplayName'] as string;
   const broadcastUser = inputs['broadcastUser'] as string;
   let rawInput = inputs['rawInput'] as string;
   const user = inputs['user'] as string;
@@ -40,7 +42,7 @@ async function method(inputs: { [key: string]: number | string | boolean | strin
   const avatarURL = 'https://i.imgur.com/xGoEvn9.png';
 
   // Post to Discord Webhook
-  await postToDiscord(webhookUrl, content, user, avatarURL);
+  await postToDiscord(webhookUrl, content, discordDisplayName, avatarURL);
 }
 
 // Function to post to Discord Webhook
@@ -48,6 +50,7 @@ async function postToDiscord(webhookUrl: string, content: string, username: stri
   try {
     await axios.post(webhookUrl, {
       content: content,
+      username: username,
       avatar_url: avatarUrl
     });
     console.log('Message posted to Discord');
