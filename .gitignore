@@ -132,5 +132,9 @@ dist
 # Ignore .bat files
 .bat
 
+# Added by me
 settings.env
 start.bat
+wip/
+src/actions/SubathonAddSeconds.ts
+src/actions/SubathonFormatTime.ts
